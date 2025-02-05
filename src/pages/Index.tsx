@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { Clock, DollarSign, Users, FolderKanban } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const stats = [
   {
@@ -9,6 +10,7 @@ const stats = [
     icon: Clock,
     change: "+2.5%",
     changeType: "positive",
+    link: "/timetracking"
   },
   {
     title: "Active Projects",
@@ -44,24 +46,30 @@ const Index = () => {
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
-            <Card key={stat.title} className="p-6">
-              <div className="flex items-center justify-between">
-                <stat.icon className="h-5 w-5 text-muted-foreground" />
-                <span
-                  className={`text-sm ${
-                    stat.changeType === "positive"
-                      ? "text-green-600"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {stat.change}
-                </span>
-              </div>
-              <div className="mt-4">
-                <h3 className="text-2xl font-bold">{stat.value}</h3>
-                <p className="text-sm text-muted-foreground">{stat.title}</p>
-              </div>
-            </Card>
+            <Link 
+              key={stat.title} 
+              to={stat.link || "#"}
+              className={stat.link ? "cursor-pointer" : "cursor-default"}
+            >
+              <Card className="p-6 hover:shadow-lg transition-shadow">
+                <div className="flex items-center justify-between">
+                  <stat.icon className="h-5 w-5 text-muted-foreground" />
+                  <span
+                    className={`text-sm ${
+                      stat.changeType === "positive"
+                        ? "text-green-600"
+                        : "text-muted-foreground"
+                    }`}
+                  >
+                    {stat.change}
+                  </span>
+                </div>
+                <div className="mt-4">
+                  <h3 className="text-2xl font-bold">{stat.value}</h3>
+                  <p className="text-sm text-muted-foreground">{stat.title}</p>
+                </div>
+              </Card>
+            </Link>
           ))}
         </div>
 
@@ -69,7 +77,6 @@ const Index = () => {
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Recent Time Entries</h3>
             <div className="space-y-4">
-              {/* Placeholder for time entries */}
               <p className="text-muted-foreground">No recent entries</p>
             </div>
           </Card>
@@ -77,7 +84,6 @@ const Index = () => {
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Upcoming Tasks</h3>
             <div className="space-y-4">
-              {/* Placeholder for tasks */}
               <p className="text-muted-foreground">No upcoming tasks</p>
             </div>
           </Card>
