@@ -10,7 +10,7 @@ const stats = [
     icon: Clock,
     change: "+2.5%",
     changeType: "positive",
-    link: "/timetracking"
+    link: "/timesheet"
   },
   {
     title: "Active Projects",
