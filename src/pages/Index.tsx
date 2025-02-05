@@ -32,6 +32,7 @@ const stats = [
     icon: DollarSign,
     change: "Processing",
     changeType: "neutral",
+    link: "/payroll"
   },
 ];
 
